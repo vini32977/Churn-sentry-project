@@ -1,0 +1,43 @@
+stages:
+  ingest_data:
+    cmd: python src/stages/ingest.py
+    deps:
+      - src/stages/ingest.py
+      - data/raw/Data.csv
+    params:
+      - data_ingestion.test_size
+    outs:
+      - data/processed/train.csv
+      - data/processed/test.csv
+
+  transform_data:
+    cmd: python src/stages/transform.py
+    deps:
+      - src/stages/transform.py
+      - data/processed/train.csv
+      - data/processed/test.csv
+    outs:
+      - data/final/train_final.csv
+      - data/final/test_final.csv
+
+  train_model:
+    cmd: python src/stages/train.py
+    deps:
+      - src/stages/train.py
+      - data/final/train_final.csv
+    params:
+      - train.n_estimators
+      - train.max_depth
+      - base.random_state
+    outs:
+      - models/model.joblib
+
+  evaluate_model:
+    cmd: python src/stages/evaluate.py
+    deps:
+      - src/stages/evaluate.py
+      - models/model.joblib
+      - data/processed/test.csv # Changed from data/final/test_final.csv
+    metrics:
+      - reports/metrics.json:
+          cache: false

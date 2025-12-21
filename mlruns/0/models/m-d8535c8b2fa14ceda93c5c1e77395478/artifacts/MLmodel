@@ -1,0 +1,22 @@
+artifact_path: file:C:/Users/vini3/OneDrive/Documents/churn_sentry_poject/mlruns/0/models/m-d8535c8b2fa14ceda93c5c1e77395478/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.7
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.2
+mlflow_version: 3.7.0
+model_id: m-d8535c8b2fa14ceda93c5c1e77395478
+model_size_bytes: 6274381
+model_uuid: m-d8535c8b2fa14ceda93c5c1e77395478
+prompts: null
+run_id: 9b494366f34646ed8a9dc4738f10578b
+utc_time_created: '2025-12-20 12:03:46.031378'
